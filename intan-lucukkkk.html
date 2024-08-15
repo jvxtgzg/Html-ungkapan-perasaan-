@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pernyataan Perasaan untuk Intan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400&family=Quicksand:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            background-image: url('https://github.com/jvxtgzg/7272-/blob/80e9877daec1259e8d834eed53dc35ab4e6da6e3/Pin%20by%20sama287%20on%20every%20things%20in%202022%20_%20Ilustrasi%20daun%2C%20Estetika%20langit%2C%20Wallpaper%20kartun.jpeg?raw=true');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 100px auto;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4081;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        button {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #ff4081;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e6366f;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .popup, .popup-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .popup h2 {
+            margin-bottom: 20px;
+        }
+
+        .popup p {
+            font-size: 24pt;
+            margin-bottom: 20px;
+        }
+
+        .popup-video {
+            display: none;
+        }
+
+        .popup-video video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        function goToNextPage() {
+            document.querySelector('.container').innerHTML = `
+                <h1>Hai Intan!</h1>
+                <p>Melanjutkan pembicaraan ku yg tadi, disini aku mau ajak Intan bangun sebuah hubungan sama aku. Aku suka sama Intan, aku mulai ngerasain perasaan yg tumbuh di Intan.</p>
+                <button onclick="showPopup()">Next</button>
+            `;
+        }
+
+        function showPopup() {
+            document.querySelector('.overlay').style.display = 'block';
+            document.querySelector('.popup').style.display = 'block';
+        }
+
+        function answerYes() {
+            document.querySelector('.popup').style.display = 'none';
+            fadeOutAudio(document.getElementById('backsound'), 1000); // Fade out selama 1 detik
+            var videoContainer = document.querySelector('.popup-video');
+            var video = videoContainer.querySelector('video');
+            videoContainer.style.display = 'block';
+            videoContainer.classList.add('fade-in');
+            video.play();
+            video.addEventListener('ended', function() {
+                showPopupMessage();
+            });
+        }
+
+        function showPopupMessage() {
+            document.querySelector('.popup-video').style.display = 'none';
+            document.querySelector('.popup').innerHTML = `
+                <h2>Sebutkan angka 7</h2>
+                <p>7</p>
+            `;
+            document.querySelector('.popup').style.display = 'block';
+        }
+
+        function answerNo() {
+            alert('Hey, terima kasih! Aku senang kamu masih mau membaca semua ini. Mungkin next time aku bisa sama kamu sebagai pasangan!');
+        }
+
+        function fadeOutAudio(audioElement, duration) {
+            var fadeAudio = setInterval(function() {
+                if (audioElement.volume > 0.05) {
+                    audioElement.volume -= 0.05;
+                } else {
+                    clearInterval(fadeAudio);
+                    audioElement.pause();
+                    audioElement.volume = 1.0; // Kembalikan volume ke default
+                }
+            }, duration / 20);
+        }
+    </script>
+</head>
+<body>
+
+<!-- Tombol untuk memutar backsound -->
+<button onclick="document.getElementById('backsound').play()">Mulai Backsound</button>
+
+<!-- Tag audio untuk memutar backsound secara manual -->
+<audio id="backsound" loop>
+    <source src="https://github.com/jvxtgzg/7272-/blob/80e9877daec1259e8d834eed53dc35ab4e6da6e3/ssstik.io_1723606583672.mp3?raw=true" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+</audio>
+
+<div class="container">
+    <h1>Hai, INTAN!</h1>
+    <p> Aku mungkin belum lama kenal Intan, tapi aku berusaha berkomunikasi sama Intan akhir-akhir ini. Aku ga tau kenapa setiap bicara sama kamu, perasaan yg dulu pernah ga ada muncul lagi. Dan aku heran apa aku ngerasain cinta lagi di Intan. Dan aku gamau lewatin kesempatan ini. Karena dari sebelumnya juga aku pernah lihat Intan dan aku kagum sama Intan bahkan ketika kita komunikasi sedikit ngobrol tentang hal-hal baru aku makin mau kenal Intan. Supaya aku bisa lebih kenal dan leluasa mengekspresikan perasaan ku buat Intan. Aku pengen menyatakan sesuatu untuk Intan.</p>
+    <button onclick="goToNextPage()">Next</button>
+</div>
+
+<div class="overlay hidden"></div>
+
+<div class="popup hidden">
+    <h2>Intan, bolehkah aku minta Intan jadi pacar aku?</h2>
+    <button onclick="answerYes()">Iya</button>
+    <button onclick="answerNo()">Tidak</button>
+</div>
+
+<div class="popup-video hidden">
+    <video controls>
+        <source src="https://raw.githubusercontent.com/jvxtgzg/7272-/9534ef6a0d04aab8ecbad6852614f7d8a028a1bb/lv_0_20240815002559.mp4" type="video/mp4">
+        Browser Anda tidak mendukung elemen video.
+    </video>
+</div>
+
+</body>
+</html>
